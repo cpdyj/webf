@@ -2,6 +2,7 @@ package framework.bootstrap
 
 import framework.annotation.BootstrapExecute
 import framework.utils.Graph
+import framework.utils.deWrapException
 import kotlinx.coroutines.*
 import org.apache.logging.log4j.kotlin.logger
 import org.reflections.Reflections
@@ -70,7 +71,9 @@ suspend fun scanAndExecuteBootstraps(r: Reflections) {
                         runCatching {
                             task.callable.invoke()
                         }.onFailure {
-                            val rootCause = deWrapException<InvocationTargetException>(it) ?: it
+                            val rootCause = deWrapException<InvocationTargetException>(
+                                it
+                            ) ?: it
                             val errmsg =
                                 "[${task.name}] -> ${rootCause::class.qualifiedName}: ${rootCause.message}"
                             throw BootstrapMethodFailException(msg = errmsg, cause = rootCause)
@@ -88,9 +91,3 @@ suspend fun scanAndExecuteBootstraps(r: Reflections) {
 
 internal class BootstrapMethodFailException(msg: String, cause: Throwable?) : RuntimeException(msg, cause)
 
-inline fun <reified T : Throwable> deWrapException(th: Throwable) =
-    if (th is T) {
-        th.cause
-    } else {
-        th
-    }
