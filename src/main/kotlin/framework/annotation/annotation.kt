@@ -8,6 +8,15 @@ import java.lang.annotation.Inherited
 @NeedScan
 annotation class RestController
 
+/**
+ * Annotation for bootstrap execute.
+ *
+ * Annotated function will be called on bootstrap
+ *
+ * @param[depends] function name list of dependencies
+ *
+ * @author iseki
+ */
 @NeedScan
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

@@ -3,6 +3,7 @@ package framework.utils
 /**
  * Graph
  *
+ * @param[size] Graph node size.
  * @author iseki
  */
 class Graph(val size: Int) {
@@ -17,6 +18,11 @@ class Graph(val size: Int) {
         table[from].takeIf { !it.contains(to) }?.add(to) ?: error("edge exists.")
     }
 
+    /**
+     * try to sort map with kahn algorithm
+     *
+     * @return Return sorted list if there is no circle. Otherwise null.
+     */
     fun kahn(): List<List<Int>>? {
         val ind = inDegree.copyOf()
         val nodes = (0 until size).toMutableSet()
@@ -32,6 +38,11 @@ class Graph(val size: Int) {
         return output.takeIf { nodes.isEmpty() }
     }
 
+    /**
+     * do DFS try to find circle.
+     *
+     * **Note:** Not optimization.
+     */
     fun circleDetect(): List<Int>? {
         table.forEachIndexed { index, _ ->
             val l = LinkedHashSet<Int>()
