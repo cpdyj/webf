@@ -328,3 +328,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+!gradle-wrapper.jar
