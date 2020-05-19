@@ -31,7 +31,8 @@ jobs:
       run: |
         echo prepare gradle.
         echo `pwd`
-        ls
+        chmod 755 ./gradlew
+        ls -l
         ./gradlew
         
     - name: build
