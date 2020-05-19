@@ -12,7 +12,12 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    maven("https://maven.aliyun.com/repository/public")
+    if (System.getenv("GITHUB_WORKFLOW").orEmpty().trim().isBlank()) {
+        maven("https://maven.aliyun.com/repository/public")
+        println("add aliyun repos")
+    } else {
+        println("detected Github Action, not add aliyun repos.")
+    }
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
     mavenCentral()
 }
