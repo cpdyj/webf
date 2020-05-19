@@ -1,7 +1,6 @@
 package framework.bootstrap
 
 import framework.annotation.RestController
-import framework.bootstrap.scanAndExecuteBootstraps
 import org.apache.logging.log4j.kotlin.logger
 import org.reflections.Reflections
 import org.reflections.scanners.MethodAnnotationsScanner
@@ -12,7 +11,6 @@ import org.reflections.util.ConfigurationBuilder
 
 interface IRestController
 
-private val logger = logger("bootstrap")
 
 suspend fun main() {
     println("Hello world")
