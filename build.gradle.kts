@@ -1,6 +1,11 @@
 plugins {
     java
     kotlin("jvm") version "1.4-M1"
+    application
+}
+
+application {
+    mainClassName = "framework.bootstrap.MainKt"
 }
 
 group = "org.example"
