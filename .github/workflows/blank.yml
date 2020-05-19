@@ -40,9 +40,9 @@ jobs:
           ./gradlew
 
       - name: build
-      run: |
-        ./gradlew build
-        
-    - name: check
-      run: |
-        ./gradlew check
+        run: |
+          ./gradlew build
+
+      - name: check
+        run: |
+          ./gradlew check
