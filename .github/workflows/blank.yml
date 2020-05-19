@@ -20,22 +20,26 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run one line Hello, world
-      run: echo Hello, world!
+      # Runs a single command using the runners shell
+      - name: Run one line Hello, world
 
-    # Runs a set of commands using the runners shell
-    - name: prepare gradle.
-      run: |
-        echo prepare gradle.
-        echo `pwd`
-        chmod 755 ./gradlew
-        ls -l
-        ./gradlew
-        
-    - name: build
+      - name: setup JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      # Runs a set of commands using the runners shell
+      - name: prepare gradle.
+        run: |
+          echo prepare gradle.
+          echo `pwd`
+          chmod +x ./gradlew
+          ls -l
+          ./gradlew
+
+      - name: build
       run: |
         ./gradlew build
         
