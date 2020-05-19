@@ -1,4 +1,4 @@
-package framework
+package framework.bootstrap
 
 import framework.annotation.RestController
 import framework.bootstrap.scanAndExecuteBootstraps
