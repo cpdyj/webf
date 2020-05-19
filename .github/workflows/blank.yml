@@ -24,6 +24,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run one line Hello, world
+        run: |
+          - echo 'Hello world!!!'
 
       - name: setup JDK 8
         uses: actions/setup-java@v1
